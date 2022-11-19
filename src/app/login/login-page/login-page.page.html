@@ -1,0 +1,71 @@
+<!--ion-header>
+  <ion-toolbar>
+    <ion-title>login-page</ion-title>
+  </ion-toolbar>
+</ion-header-->
+
+<ion-content class="img no-scroll">
+    <!-- Formulário responsavel pelo login, com seus estilos e junto dele temos o (ngSubmit) que aponta para uma função
+    no arquivo login-page.page.ts, e quando é apertado o botão entrar abaixo o formulário é submetido e a função é chamada -->
+    <form action="" (ngSubmit)="onSubmit()" class="form" style="--border-radius:10px 10px 0px 0px">
+      <!--Primeiro item do formulário usado para colocar uma label logo acima dos campos digitáveis do formulário-->
+      <ion-item class="bkColor" style="text-align: center;--border-radius:10px">
+        <ion-label style="color: white; font-size: x-large">Planogram View</ion-label>
+      </ion-item>
+      <!--Primeiro campo digitável um input usado para o e-mail, dentro dele temos algumas configurações como
+      o Placeholder que pode ser modificado, além do name que é utilizado quando o formulário for submetido com o botão
+      Entrar e também temos o [(ngModel)] que é utilizado para atribuir o valor desse campo, ou seja, o que for digitado
+      no campo vai para dentro do [(ngModel)] no caso o que estamos ele esta atribuindo é uma variável que esta localizada
+      no arquivo login-page.page.ts dentro desse mesmo diretório, já que esses dois arquivos se conversam, o interpretador
+      concilia esse dois arquivos-->
+      <ion-item class="bkColor">
+        <ion-input
+          placeholder=" E-mail"
+          autocapitalize="on"
+          [(ngModel)]="login.Email"
+          name="email"
+          style="color:black"
+          id="email"
+        ></ion-input><ion-icon name="person-outline" style="color:black;background-color: #f5f5f5;min-height: 41px;"></ion-icon>
+        
+      </ion-item>
+      <!--O segundo campo digitável, funciona da mesma maneira que o primeiro, com sua única diferença o type que foi colocado
+      como password para que ao digitar os caracteres fiquem como asterísticos-->
+      <ion-item class="bkColor">
+        <ion-input
+          placeholder=" Senha"
+          [(ngModel)]="login.PassWd"
+          [type]="fieldTextType ? 'text' : 'password'"
+          autocapitalize="on"
+          name="Senha"
+          style="color:black"
+          id="senha"
+        > </ion-input><ion-icon style="color:black;background-color: #f5f5f5;min-height: 41px;" [name]="fieldTextType ? 'lock-open-outline' : 'lock-closed-outline'" (click)="toggleFieldTextType()"></ion-icon>
+      </ion-item>
+      <!--O botão que submete o formulário ao clicar nele o formulário é submetido a validação, e é chamada a função
+      que realiza esse processo-->
+      <ion-item class="bkColor">
+        <ion-button
+          style="margin-left: 5%; width: 90%"
+          type="submit"
+          color="primary"
+          expand="block"
+          >Entrar</ion-button
+        >
+      </ion-item>
+      <!-- parte do formulário usada para enviar um e-mail para o usuário caso tenha esquecido a senha, no caso essa label
+      possui o atributo (click) que quando percebe um clique em cima chama a função passada, a mesma se encontra no arquivo 
+      login-page.page.ts no mesmo diretório -->
+      <ion-item class="bkColor" style="text-align: center;--border-radius:0px 0px 10px 10px">
+        <!--ion-router-link color="light">Esqueci minha senha</ion-router-link-->
+        <ion-label (click)="forgetPasswd()" for="" color="light" 
+          >Esqueci minha senha</ion-label
+        >
+      </ion-item>
+    </form>
+  
+  <ion-row style="height: 58vh;" class="ion-justify-content-center">
+    <ion-img src="assets/img/logo-thaga-mod.png" style="width: 50%"></ion-img>
+  </ion-row>
+  <!--ion-img src="./assets/img/fundo.png"></ion-img-->
+</ion-content>

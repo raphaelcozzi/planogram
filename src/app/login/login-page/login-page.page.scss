@@ -1,0 +1,76 @@
+.img {
+  content: "";
+  position: absolute !important;
+  height: 100% !important;
+  width: 100% !important;
+  --background: none;
+  --background: url("../../../assets/img/planogram.jpg") 0/100% 100% no-repeat !important;
+  
+  background-position: center center !important;
+  background-repeat: no-repeat !important;
+  background-size: cover !important;
+  -webkit-background-size:cover;
+  overflow-y: hidden;
+}
+.no-scroll {
+  // overwrite inline styles
+ 
+  --overflow: hidden;
+  overflow: auto;
+  
+}
+/*#email {
+  
+  background-image: url("../../../assets/img/user.png");
+  background-size: 25px 25px;
+  background-repeat: no-repeat;
+  background-position-x: 100%;
+  background-position-y: 50%;
+}
+#senha {
+  background-image: url('../../../assets/img/passwd.png');
+  background-size: 25px 25px;
+  background-repeat: no-repeat;
+  background-position-x: 100%;
+  background-position-y: 50%;
+}*/
+.bkColor {
+  --background: rgba(35, 181, 167, 0.5);
+  padding-right: 10%;
+  padding-left: 10%;
+}
+.form {
+  height: 42vh;
+  margin-top:33%;
+  --border-radius: 10px;
+}
+.sc-ion-input-md-h {
+  --placeholder-color: #303030 !important;
+  --background: #f5f5f5;
+  --highlight-background: transparent;
+}
+ion-input {
+  border-radius: 10px 0px 0px 10px;
+  --highlight-background: transparent;
+}
+ion-icon{
+  border-radius: 0px 10px 10px 0px;
+}
+:host(.item-interactive.item-has-focus) {
+  --highlight-background: transparent;
+}
+ion-item {
+  --border-color: transparent;
+}
+:host {
+  .item-interactive.ion-invalid {
+    --highlight-background: transparent !important;
+  }
+  .item-interactive.ion-valid {
+    --highlight-background: transparent !important;
+  }
+  .item-interactive.item-has-focus {
+    --highlight-background: transparent !important;
+    /*--highlight-background: var(--highlight-color-focused);*/
+  }
+}

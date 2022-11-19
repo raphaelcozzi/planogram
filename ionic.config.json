@@ -1,0 +1,8 @@
+{
+  "name": "planogram",
+  "integrations": {
+    "capacitor": {},
+    "cordova": {}
+  },
+  "type": "angular"
+}

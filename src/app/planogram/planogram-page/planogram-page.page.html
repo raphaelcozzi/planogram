@@ -1,0 +1,238 @@
+﻿<ion-header color="primary" [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title color="light">Planogram View </ion-title>
+    <ion-button
+    slot="end"
+    type="submit"
+    color="primary"
+    expand="block"
+    (click)="closeApp()"
+    ><ion-icon name="close-outline"></ion-icon></ion-button>
+  </ion-toolbar>
+</ion-header>
+<!--Parte acima é resposável por colocar o cabeçalho na página contendo o menu lateral, configurações desse menu estão
+localizadas no arquivo app.component.html dois diretórios antecessores.
+E abaixo temos os filtros usados para localizar o arquivos que ficam na web -->
+
+<ion-content class="img">
+  <!--Abaixo os 7 próximos itens são os itens referentes aos selects usados para os filtros, e dentro deles podemos destacar
+  o (ionchange) ele faz com que ao usuário selecionar algum item ou modifica-lo seja chamado a função que esta localizada no arquivo
+  planogram-page.page.ts, igual o que ocorre ao [interfaceoptions] que chama um valor que se encontra no mesmo arquivo
+  -->
+  <ion-item class="select" *ngIf="isValidCompany" >
+    <ion-select
+      [interfaceOptions]="CompanyOptions"
+      interface="action-sheet"
+      placeholder="Empresa"
+      style="--min-height:30px !important;color:black;"
+      
+      [(ngModel)]="empresa"
+      (ionChange)="onChangeEmpresa(empresa)"
+    >
+    <!--Abaixo temos o *ngFor que nada mais faz do que um for dentro da variavel empresas que esta no arquivo
+    planogram-page.page.ts no mesmo dirétorio e vá criado as opções com base nele-->
+      <ion-select-option class="ion-text-uppercase" *ngFor="let empresa of empresas"  [value]="empresa.empresa">{{ empresa.empresa }}</ion-select-option>
+      
+    </ion-select>
+  </ion-item>
+  <ion-item class="select" >
+    <ion-select
+      [interfaceOptions]="EmployeOptions"
+      interface="action-sheet"
+      placeholder="Cliente"
+      style="--min-height:30px !important;color:black;"
+      
+      [(ngModel)]="cliente"
+      (ionChange)="onChangeCliente(cliente)"
+    >
+      <ion-select-option class="ion-text-uppercase" *ngFor="let cliente of clientes"  [value]="cliente.cliente">{{ cliente.cliente }}</ion-select-option>
+      
+    </ion-select>
+  </ion-item>
+  <ion-item class="select">
+    <ion-select
+      [interfaceOptions]="ChannelOptions"
+      interface="action-sheet"
+      placeholder="Canal"
+      [(ngModel)]="canal"
+      (ionChange)="onChangeCanal(canal)"
+      style="color:black;"
+      
+    >
+      <ion-select-option class="ion-text-uppercase" *ngFor="let canal of canais"  [value]="canal.canal" >{{canal.canal}}</ion-select-option>
+      
+    </ion-select>
+  </ion-item>
+  <ion-item class="select">
+    <ion-select
+      [interfaceOptions]="RegionOptions"
+      interface="action-sheet"
+      placeholder="Regiões"
+      [(ngModel)]="regiao"
+      (ionChange)="onChangeRegioes(regiao)"
+      style="color:black;"
+    >
+      <ion-select-option class="ion-text-uppercase" *ngFor="let regiao of regioes"  [value]="regiao">{{regiao}}</ion-select-option>
+      
+    </ion-select>
+  </ion-item>
+  <ion-item class="select">
+    <ion-select
+      [interfaceOptions]="ClusterOptions"
+      interface="action-sheet"
+      placeholder="Cluster"
+      [(ngModel)]="cluster"
+      (ionChange)="onChangeCluster(cluster)"
+      style="color:black;"
+    >
+      <ion-select-option class="ion-text-uppercase" *ngFor="let cluster of clusters"  [value]="cluster.cluster">{{cluster.cluster}}</ion-select-option>
+      
+    </ion-select>
+  </ion-item>
+  <ion-item class="select">
+    <ion-select
+      [interfaceOptions]="FlagOptions"
+      interface="action-sheet"
+      placeholder="Bandeira"
+      [(ngModel)]="bandeira"
+      (ionChange)="onChangeBandeira(bandeira)"
+      style="color:black;"
+    >
+      <ion-select-option class="ion-text-uppercase" *ngFor="let bandeira of bandeiras"  [value]="bandeira.bandeira">{{bandeira.bandeira}}</ion-select-option>
+      
+    </ion-select>
+  </ion-item>
+  <ion-item class="select">
+    <ion-select
+      [interfaceOptions]="ShopOptions"
+      interface="action-sheet"
+      placeholder="Lojas"
+      [(ngModel)]="loja"
+      (ionChange)="onChangeLoja(loja)"
+      style="color:black;"
+    >
+      <ion-select-option class="ion-text-uppercase" *ngFor="let loja of lojas"  [value]="loja.loja">{{loja.loja}}</ion-select-option>
+      
+    </ion-select>
+  </ion-item>
+  <ion-item class="select">
+    <ion-select
+      [interfaceOptions]="CategoryOptions"
+      interface="action-sheet"
+      placeholder="Categoria"
+      [(ngModel)]="categoria"
+      (ionChange)="onChangeCategories(categoria)"
+      style="color:black;"
+    >
+     
+      
+      <ion-select-option class="ion-text-uppercase" *ngFor="let categoria of categorias"  [value]="categoria.categoria">{{categoria.categoria}}</ion-select-option>
+      
+    </ion-select>
+  </ion-item>
+
+  <ion-button
+    style="margin-left: 5%; width: 90%"
+    type="submit"
+    
+    expand="block"
+    (click)="searchItems()"
+    id="buttonSearch"
+    
+    ><ion-icon name="search-outline"></ion-icon> &nbsp;Pesquisar </ion-button
+  >
+
+  <ion-item
+    class="bkColor"
+    style="margin-top: 2%; text-align: center; color: white; font-size: large"
+  >
+    <ion-label id="nomeplanogram">Planograma</ion-label>
+  </ion-item>
+  <ion-item class="bkImg" id="planogram">
+    <ion-img (click)="toSeePdf(filePlanogram)" src="assets/img/platform.png" style="margin-right:-30px"></ion-img>
+    <ion-img (click)="toSeePdf(filePlanogram)" src="assets/img/platform.png"></ion-img>
+    <ion-img (click)="toSeePdf(filePlanogram)" src="assets/img/platform.png" style="margin-left:-30px"></ion-img>
+  </ion-item>
+  <ion-row>
+    <ion-col style="padding-left: 10px;">
+      <ion-item
+        class="bkColorRight"
+        style="
+          margin-top: 2%;
+          text-align: center;
+          color: white;
+          font-size: large;
+          max-width: 100%;
+          
+        "
+      >
+        <ion-label style="font-size: small;" id="nomeracional">Racional</ion-label>
+      </ion-item>
+      <ion-item class="bkImg" id="racional">
+        <ion-img (click)="toSeePdf(fileRacional)" src="assets/img/racional.png" ></ion-img>
+      </ion-item>
+    </ion-col>
+    <ion-col style="padding-right: 10px;">
+      <ion-item
+        class="bkColorLeft"
+        style="
+          margin-top: 2%;
+          text-align: center;
+          color: white;
+          font-size: large;
+          max-width: 100%;
+          
+        "
+      >
+        <ion-label style="font-size: small;" id="nomeregra">Regras de Ouro</ion-label>
+      </ion-item>
+      <ion-item class="bkImg" id="regra">
+        <ion-img (click)="toSeePdf(fileRegras)" src="assets/img/regras.png" ></ion-img>
+      </ion-item>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col style="padding-left: 10px;">
+      <ion-item
+        class="bkColorRight"
+        style="
+          margin-top: 2%;
+          text-align: center;
+          color: white;
+          font-size: large;
+          max-width: 100%;
+          
+        "
+      >
+        <ion-label style="font-size: small;" id="nomeguia">Guia de Execução</ion-label>
+      </ion-item>
+      <ion-item class="bkImg" id="guia" >
+        <ion-img (click)="toSeePdf(fileGuia)" src="assets/img/guia.png" ></ion-img>
+      </ion-item>
+    </ion-col>
+    <ion-col style="padding-right: 10px;">
+      <ion-item
+        class="bkColorLeft"
+        style="
+          margin-top: 2%;
+          text-align: center;
+          color: white;
+          font-size: large;
+          max-width: 100%;
+          
+        "
+      >
+        <ion-label style="font-size: small;" id="nomeadicional">Arquivo Adicional</ion-label>
+      </ion-item>
+      <ion-item class="bkImg" id="adicional">
+        <ion-img (click)="toSeePdf(fileAdicional)" src="assets/img/arquivos.png" ></ion-img>
+      </ion-item>
+    </ion-col>
+  </ion-row>
+  <ion-item style="--background:transparent">
+    
+  </ion-item>
+</ion-content>

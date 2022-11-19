@@ -1,0 +1,82 @@
+.img {
+  --background: url("../../../assets/img/planogram.jpg") 0 0/100% 100% no-repeat !important;
+  --border-radius:10px;
+}
+.select {
+  --background: rgba(230, 230, 230, 1) !important;
+  width: 95%;
+  padding-left: 5%;
+  margin-top: 1%;
+  --border-radius:10px;
+}
+.select-action-sheet{
+  color:red;
+  height: 10px;
+}
+.teste{
+  color:black !important;
+}
+.fundosPiscando {
+  animation: fundosPiscando !important;
+  animation-duration: 1s !important;
+ 
+
+  
+}
+
+@-webkit-keyframes fundosPiscando {
+  from {
+    --ion-color-base: #204d74 !important;
+
+  }
+
+  to {
+    --ion-color-base: #64c294 !important;
+
+  }
+}
+.bkColor {
+  --background: rgba(35, 181, 167, 0.9);
+  padding-right: 5%;
+  padding-left: 5%;
+  width: 100%;
+}
+.bkColorLeft {
+  --background: rgba(35, 181, 167, 0.9);
+  padding-right: 5%;
+  padding-left: 5%;
+  width: 100%;
+}
+.bkColorRight {
+  --background: rgba(35, 181, 167, 0.9);
+  padding-right: 5%;
+  padding-left: 5%;
+  width: 100%;
+}
+.bkImg {
+  --background: rgba(35, 181, 167, 0.5);
+  padding-right: 5%;
+  padding-left: 5%;
+  width: 100%;
+}
+.bkColor {
+  --border-radius: 10px 10px 0px 0px;
+  
+}
+.bkImg{
+  --border-radius: 0px 0px 10px 10px;
+}
+ion-select {
+  max-width: 95%;
+  width: 95%;
+}
+ion-item {
+  --border-radius:10px 10px 0px 0px;
+}
+ion-label{
+  font-size:medium;
+}
+ion-item{
+  --min-height:30px !important;
+}
+
